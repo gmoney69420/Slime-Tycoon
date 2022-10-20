@@ -1502,7 +1502,7 @@ getgenv().ASToggle = false
 getgenv().AutoSlimesToggle = false
 getgenv().AutoSlimesAmount = 1
 getgenv().AutoObbyToggle = false
-
+getgenv().AutoPumpkinToggle = false
 
 
 local Players = game:GetService("Players")
@@ -1603,6 +1603,27 @@ function AutoObby()
     end
 end
 
+function ap()
+    while AutoPumpkinToggle and wait() do
+        pcall(function()
+            local Players = game:GetService("Players")
+            local ProximityPromptService = game:GetService("ProximityPromptService")
+            local character = game.Players.LocalPlayer.Character
+            local hrp = character.HumanoidRootPart
+            local plrname = character.name
+            
+            
+            for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+                if v.Name == "Pumpkin_Scavenger" then
+                    hrp.CFrame = v["JackO'Lantern"].CFrame
+                    fireproximityprompt(v["JackO'Lantern"].ProximityPrompt)
+                end
+            end
+        end)
+    end
+
+end
+
 
 
 
@@ -1660,6 +1681,11 @@ end)
 local AutoObby = AutoButtonsSector:Cheat("Toggle", "Auto Wizard Obby (Flashy)", function(value)
     AutoObbyToggle = value
     AutoObby()
+end)
+
+local AutoPumpkin = AutoButtonsSector:Cheat("Toggle", "Auto Pumpkin (Unlimited Boost)", function(value)
+    AutoPumpkinToggle = value
+    ap()
 end)
 
 return finity
