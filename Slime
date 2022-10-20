@@ -1524,6 +1524,11 @@ end
 
 function ac()
     while wait() and ACToggle do
+        local Players = game:GetService("Players")
+        local ProximityPromptService = game:GetService("ProximityPromptService")
+        local character = game.Players.LocalPlayer.Character
+        local hrp = character.HumanoidRootPart
+        local plrname = character.name
         for i,v in pairs(game:GetService("Workspace").Drops:GetChildren()) do
             v.CFrame = hrp.CFrame
         end
